@@ -62,7 +62,7 @@ class DimCliente{
                                              where
                                              cpf = ?
                                              and
-                                             data_fim is null'); //Corrigido
+                                             data_fim is null');
             $sqlDim->bind_param('s', $linhaComercial['cpf']);
             $sqlDim->execute();
 
@@ -102,7 +102,7 @@ class DimCliente{
                   $sqlUpdateDim->bind_param('si', $dataAtual, $linhaDim['SK_cliente']);
                   $sqlUpdateDim->execute();
                   if(!$sqlUpdateDim->error){
-                   /*Corrigido*/  $sqlInsertDim = $connDimensao->prepare('INSERT INTO dim_cliente
+                     $sqlInsertDim = $connDimensao->prepare('INSERT INTO dim_cliente
                                                          (cpf, nome, sexo, idade, rua, bairro, cidade, uf, data_ini)
                                                          VALUES
                                                          (?, ?, ?, ?, ?, ?, ?, ?, ?)');
@@ -113,10 +113,8 @@ class DimCliente{
                      $sqlInsertDim->execute();
                      $sumario->setQuantidadeAlteracoes();
                   }else{
-                      throw new \Exception('Erro: Erro no processo de alteração!'); //Corrigido
+                      throw new \Exception('Erro: Erro no processo de alteração!');
                   }
-               }else{
-
                }
             }
          }
