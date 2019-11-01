@@ -35,8 +35,29 @@ class DimData{
          }
 
       }else{//Dimensão já contém dados
+         $sqlDataPedido = $connComercial->prepare('SELECT data_pedido FROM pedido');
+         $sqlDataPedido->execute();
 
+         $resultDataPedido = $sqlDataPedido->get_result();
+         while($linhaDataPedido = $resultDataPedido->fetch_assoc()){
+            $sqlDimData = $connDimensao->prepare('SELECT data FROM dim_data
+                                                   WHERE
+                                                   data = ?');
+            $sqlDimData->bind_param('s', $linhaDataPedido['data_pedido']) ;
+            $sqlDimData->execute();
+
+            $resultDimData = $sqlDimData->get_result();
+            if($resultDimData->num_rows === 0){
+               $dataDimensao = new Data();
+
+               $dataDimensao->setData($linhaDataPedido['data_pedido']);
+               $this->carregarNovaData($dataDimensao);
+
+               $sumario->setQuantidadeInclusoes();
+            }
+         }
       }
+      return $sumario;
    }
    public function carregarNovaData($objData){
       try{

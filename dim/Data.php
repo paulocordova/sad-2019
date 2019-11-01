@@ -17,11 +17,28 @@ class Data{
       $this->mes = date('m', strtotime($data));
       $this->ano = date('Y', strtotime($data));
       $this->semanaAno = date('W', strtotime($data));
-      $this->bimestre = (date('m', strtotime($data)) < 3) ? 1 : (date('m', strtotime($data)) < 5) ? 2 :
-                        (date('m', strtotime($data)) < 7) ? 3 : (date('m', strtotime($data)) < 9) ? 4 :
-                        (date('m', strtotime($data)) < 11) ? 5 : 6;
-      $this->trimestre = (date('m', strtotime($data)) < 4) ? 1 : (date('m', strtotime($data)) < 7) ? 2 :
-                         (date('m', strtotime($data)) < 10) ? 3 : 4;
+      if($this->mes > 0 && $this->mes < 3){
+         $this->bimestre = 1;
+      }elseif($this->mes > 2 && $this->mes < 5){
+         $this->bimestre = 2;
+      }elseif($this->mes > 4 && $this->mes < 7){
+         $this->bimestre = 3;
+      }elseif($this->mes > 6 && $this->mes < 9){
+         $this->bimestre = 4;
+      }elseif($this->mes > 8 && $this->mes < 11){
+         $this->bimestre = 5;
+      }else{
+         $this->bimestre = 6;
+      }
+      if($this->mes > 0 && $this->mes < 4){
+         $this->trimestre = 1;
+      }elseif($this->mes > 3 && $this->mes < 7){
+         $this->trimestre = 2;
+      }elseif($this->mes > 6 && $this->mes < 10){
+         $this->trimestre = 3;
+      }else{
+         $this->trimestre = 4;
+      }
       $this->semestre =  (date('m', strtotime($data)) < 7) ? 1 : 2;
 
    }
