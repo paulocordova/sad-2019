@@ -3,7 +3,7 @@ namespace dimensoes;
 
 /**
  * Model da entidade cliente
- * @author Paulo Roberto Córdova
+ * @author Julio
  */
 class Cliente{
    /**
@@ -64,6 +64,7 @@ class Cliente{
     * @param $uf UF do cliente
     *@return Void
     */
+
    public function setCliente($cpf, $nome, $sexo, $idade, $rua, $bairro, $cidade, $uf){
       $this->cpf = $cpf;
       $this->nome = $nome;
