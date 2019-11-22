@@ -15,7 +15,7 @@ class FatoVenda{
       $this->SK_data = $data;
       $this->pedido = $pedido;
       $this->valor_venda = $valor;
-      $this->$quantidade_venda = $quantidade;
+      $this->quantidade_venda = $quantidade;
    }
 }
 
